@@ -87,14 +87,31 @@ body {
     top: 200px;
     left: 800px;
   
-    background-image: url("images/cactus.png");
+    background-image: url("images/cactuses_big_1.png");
     background-size: 20px 40px;
+    animation: block 3s infinite linear;
+  }
+
+  #cloud {
+    width: 60px;
+    height: 20px;
+    position: absolute;
+    top: 50px;
+    left: 800px;
   
-    animation: block 1s infinite linear;
+    background-image: url("images/cloud.png");
+    background-size: 20px 40px;
+    animation: block 10s infinite linear;
   }
   
+  #ground {
+    background-image: url("images/ground.png");
+    position: absolute;
+    bottom: 0px;
+  }
+
   @keyframes block {
-    0% {
+    0% {    
       left: 800px;
     }
   

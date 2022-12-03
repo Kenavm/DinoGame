@@ -3,14 +3,14 @@ const WIDTH = 800;
 const HEIGHT = 256;
 
 const DINO_EL = document.querySelector("#dino");
-const cactus = document.getElementById("cactus");
+const CACTUS = document.getElementById("cactus");
 
 function jump() {
-  if (dino.classList != "jump") {
-    dino.classList.add("jump");
+  if (DINO_EL.classList != "jump") {
+    DINO_EL.classList.add("jump");
 
     setTimeout(function () {
-      dino.classList.remove("jump");
+      DINO_EL.classList.remove("jump");
     }, 500);
   }
 }
@@ -21,11 +21,11 @@ document.addEventListener("keydown", function (event) {
 
   let isAlive = setInterval(function () {
     // get current dino Y position
-    let dinoTop = parseInt(window.getComputedStyle(dino).getPropertyValue("top"));
+    let dinoTop = parseInt(window.getComputedStyle(DINO_EL).getPropertyValue("top"));
   
     // get current cactus X position
     let cactusLeft = parseInt(
-      window.getComputedStyle(cactus).getPropertyValue("left")
+      window.getComputedStyle(CACTUS).getPropertyValue("left")
     );
   
     // detect collision
