@@ -4,6 +4,8 @@ const HEIGHT = 256;
 const DINO_EL = document.querySelector("#dino");
 const cactus = document.querySelector("#cactus");
 const scoreDiv = document.querySelector("#score");
+const highScoreDiv = document.querySelector(".highscore-point");
+let highScoreVar = 0;
 
 let cactusLeft = parseInt(
   window.getComputedStyle(cactus).getPropertyValue("left")
@@ -19,6 +21,8 @@ function jump() {
   }
 }
 let score = 0;
+let highScoreStorage = localStorage.getItem("HIGH SCORE: ");
+highScoreDiv.textContent = highScoreStorage;
 document.addEventListener("keydown", function (event) {
   jump();
 });
@@ -49,9 +53,22 @@ function scoreCheck(a) {
     score++;
     scoreDiv.textContent = Math.floor(score / 22);
   }
+  highScoreSaver(score);
 }
-while (true) {
-  groundMove();
-  // groundMove2();
-  // groundMove3();
+
+function highScoreSaver(CurrentHighScore) {
+  if (Math.floor(CurrentHighScore / 22) - highScoreVar > 0) {
+    highScoreVar = Math.floor(CurrentHighScore / 22);
+    localStorage.setItem("HIGH SCORE: ", highScoreVar);
+    let sss = localStorage.getItem("HIGH SCORE: ");
+    console.log(highScoreVar);
+    console.log(sss);
+    highScoreDiv.innerHTML = sss;
+  }
 }
+
+// while (true) {
+//   groundMove();
+//   // groundMove2();
+//   // groundMove3();
+// }

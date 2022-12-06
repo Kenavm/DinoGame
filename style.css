@@ -423,35 +423,14 @@ body {
     left: -300px;
   }
 }
-/* #ground2 {
-  background-image: url("images/ground.png");
-  position: absolute;
-  bottom: 0px;
-  animation: groundMove2 4.5s infinite running linear;
-  
-}
-@keyframes groundMove2 {
-  0% {
-    left: 50px;
-  }
 
-  100% {
-    left: -400px;
-  }
-}
-#ground3 {
-  background-image: url("images/ground.png");
+.highscore {
+  display: flex;
   position: absolute;
-  bottom: 0px;
-  animation: groundMove3 5.5s infinite running;
-  
+  top: 0;
+  left: 0;
+  padding: 0.2em 0.5em;
 }
-@keyframes groundMove3 {
-  0% {
-    left: 150px;
-  }
-
-  100% {
-    left: -400px;
-  }
-} */
+.highscore-text {
+  size: 20px;
+}
