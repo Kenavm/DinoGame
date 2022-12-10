@@ -1,12 +1,14 @@
-// The size of our game area
 const WIDTH = 800;
 const HEIGHT = 256;
 const DINO_EL = document.querySelector("#dino");
 const cactus = document.querySelector("#cactus");
 const scoreDiv = document.querySelector("#score");
 const highScoreDiv = document.querySelector(".highscore-point");
+let highScoreStorage = localStorage.getItem("HIGH SCORE: ");
+highScoreDiv.textContent = highScoreStorage;
+// localStorage.clear();
 let highScoreVar = 0;
-
+let score = 0;
 let cactusLeft = parseInt(
   window.getComputedStyle(cactus).getPropertyValue("left")
 );
@@ -14,15 +16,12 @@ let cactusLeft = parseInt(
 function jump() {
   if (DINO_EL.classList != "jump") {
     DINO_EL.classList.add("jump");
-
     setTimeout(function () {
       DINO_EL.classList.remove("jump");
     }, 500);
   }
 }
-let score = 0;
-let highScoreStorage = localStorage.getItem("HIGH SCORE: ");
-highScoreDiv.textContent = highScoreStorage;
+
 document.addEventListener("keydown", function (event) {
   jump();
 });
@@ -39,7 +38,7 @@ let isAlive = setInterval(function () {
     window.getComputedStyle(cactus).getPropertyValue("left")
   );
 
-  if (cactusLeft < 110 && cactusLeft > 60 && dinoTop >= 185) {
+  if (cactusLeft < 118.5 && cactusLeft > 58 && dinoTop >= 185) {
     score = 0;
     scoreDiv.textContent = score;
     alert("Game Over!");
@@ -49,26 +48,30 @@ let isAlive = setInterval(function () {
 
 function scoreCheck(a) {
   let cactusPassed = false;
+  let scoreCountBreak = 0;
+
   if (a < 40 && !cactusPassed) {
     score++;
-    scoreDiv.textContent = Math.floor(score / 22);
+
+    if (
+      (scoreCountBreak =
+        0 && a < 40 && Math.floor(score / 22) - scoreDiv.textContent < 1)
+    ) {
+      scoreCountBreak = 1;
+      scoreDiv.textContent = Math.floor(score / 22) + 1;
+    } else {
+      scoreDiv.textContent = Math.floor(score / 22);
+    }
+    scoreCountBreak = 0;
   }
   highScoreSaver(score);
 }
 
 function highScoreSaver(CurrentHighScore) {
-  if (Math.floor(CurrentHighScore / 22) - highScoreVar > 0) {
+  if (Math.floor(CurrentHighScore / 22) - highScoreStorage > 0) {
     highScoreVar = Math.floor(CurrentHighScore / 22);
     localStorage.setItem("HIGH SCORE: ", highScoreVar);
-    let sss = localStorage.getItem("HIGH SCORE: ");
-    console.log(highScoreVar);
-    console.log(sss);
-    highScoreDiv.innerHTML = sss;
+    highScoreStorage = localStorage.getItem("HIGH SCORE: ");
+    highScoreDiv.innerHTML = highScoreStorage;
   }
 }
-
-// while (true) {
-//   groundMove();
-//   // groundMove2();
-//   // groundMove3();
-// }
